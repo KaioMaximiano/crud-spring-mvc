@@ -1,0 +1,31 @@
+server:
+  shutdown: graceful
+  port: ${SERVER_PORT:8080}
+
+logging:
+  level:
+    ROOT: ${LOG_ROOT_LEVEL:INFO}
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: ${SPRING_TIMEOUT_SHUTDOWN_PHASE:18s}
+  application:
+    name: crud-spring-mvc
+  datasource:
+    url: jdbc:mysql://localhost:3306/kaio
+    username: root
+    password: root
+  jpa:
+    database: MYSQL
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL5Dialect
+      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    show-sql: true
+  #flyway:
+   #url: jdbc:mysql://localhost:3306/kaio
+  #user: root
+  #password: root
+  #baseline-on-migrate: true
+  #lockRetryCount: 300
+  #enabled: true

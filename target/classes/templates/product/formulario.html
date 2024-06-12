@@ -1,0 +1,60 @@
+<html>
+	<head th:replace="~{base :: head}"></head>
+	<body>
+		<div th:replace="~{base :: logo}"></div>
+		<div class="container">
+			<div th:replace="~{base :: titulo('Products')}"></div>
+
+			<div class="card mt-3">
+				<form th:object="${productDto}" class="card-body" action="/product/new" method="POST">
+					<input type="hidden" th:field="*{id}" />
+					<div class="form-group">
+						<label for="name">Produto</label>
+						<input th:field="*{name}" th:errorClass="is-invalid" class="form-control" placeholder="Name"/>
+						<div class="invalid-feedback" th:errors="*{name}">
+							Erros on name product
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="desription">Desription</label>
+						<textarea th:field="*{description}" class="form-control" placeholder="Product Decrition."></textarea>
+					</div>
+
+					<div class="form-group">
+						<label for="desription">Category</label>
+						<select class="form-control" th:field="*{categoryId}">
+							<option value="0">select option</option>
+							<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="name">Category Path</label>
+						<input th:field="*{categoryPath}" th:errorClass="is-invalid" class="form-control" placeholder="CategoryPath"/>
+						<div class="invalid-feedback" th:errors="*{categoryPath}">
+							Erros on name product
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="name">Price</label>
+						<input th:field="*{price}" th:errorClass="is-invalid" class="form-control" placeholder="Price"/>
+						<div class="invalid-feedback" th:errors="*{price}">
+							Erros on name product
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="name">Available</label>
+						<input th:field="*{available}" th:errorClass="is-invalid" class="form-control" placeholder="Available"/>
+						<div class="invalid-feedback" th:errors="*{available}">
+							Erros on name product
+						</div>
+					</div>
+
+					<button class="btn btn-primary" type="submit">Save</button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
